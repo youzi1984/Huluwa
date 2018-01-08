@@ -45,7 +45,7 @@
 
 ## 封装与继承
 
-`Player`类实现了`Runnable`接口，葫芦娃，爷爷，蝎子精，蛇精，小啰啰均继承自Player。
+`Player`类实现了`Runnable`接口，葫芦娃，爷爷，蝎子精，蛇精，小啰啰均继承自`Player`。
 
 
 
@@ -116,4 +116,14 @@ for(Player c:field.positiveCreatures) {
 ```java
 if((Math.abs(field.positiveCreatures.get(i).x()-field.negativeCreatures.get(j).x())<30) 
         							&&(Math.abs(field.positiveCreatures.get(i).y()-field.negativeCreatures.get(j).y())<3)) 
+```
+
+
+* `Recorder`类表示战斗的记录者，单独实现为一个线程，随着战斗的开始进行记录，每隔0.5秒记录所有生物的坐标到文件中
+```java
+if( ! field.positiveCreatures.isEmpty()) {
+		                for (Player c : field.positiveCreatures) {
+		                    str.add(c.toString() + " " + c.x() + " " + c.y() + " " + c.isAlive);
+		                }
+		            }
 ```
