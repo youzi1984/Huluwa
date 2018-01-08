@@ -112,6 +112,17 @@ for(Player c:field.positiveCreatures) {
 ```
 
 
+* 当葫芦娃发现自己附近有敌人时，就主动靠近敌人
+```java
+for(p = 0; p <field.negativeCreatures.size(); ++p) {
+    				if(field.negativeCreatures.get(p).isAlive&&(Math.abs(x-field.negativeCreatures.get(p).x())+Math.abs(y-field.negativeCreatures.get(p).y())<1000))break;
+    			}
+    			if(p!=field.negativeCreatures.size()) {
+    				x = (-1)*(int) (Math.signum(this.x()-field.negativeCreatures.get(p).x())*Math.abs(x));
+    				y = (-1)*(int) (Math.signum(this.y()-field.negativeCreatures.get(p).y())*Math.abs(y));
+    			}
+```
+
 * 如果双方是不同阵营的，就依概率决定生死
 ```java
 if((Math.abs(field.positiveCreatures.get(i).x()-field.negativeCreatures.get(j).x())<30) 
