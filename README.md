@@ -5,10 +5,9 @@
 
 ## 实现效果
 
-1. 按下`空格键`之后，正方按`鹤翼`阵型出发；反方以`长蛇`阵型出发；
-2. 打斗开始前或者打斗结束后按下`L`可实现读取文件并回放；
-3. 回放和打斗过程中按下`P`可暂停；
-4. 游戏目标：击败所有敌人
+1. 按下`空格键`之后，正方按`鹤翼`阵型出发；反方以`长蛇`阵型出发。
+2. 打斗开始前或者打斗结束后按下`L`可实现读取文件并回放。
+3. 当正方全部死亡或反方全部死亡时，游戏结束。
 
 
 ## 游戏界面
@@ -31,6 +30,8 @@
 
 * 葫芦娃的奔跑速度是其他所有生物的两倍。
 
+* 葫芦娃会寻找附近的敌人，自动向他们靠近。
+
 * 当正反双方相遇时，由上帝决定双方的生死，正方有八成的概率获胜。
 
 
@@ -50,7 +51,7 @@
 
 ## 多态
 
-`Field`类中的3个`ArrayList`均使用泛型实现，体现了多态：
+`Field`类中的`ArrayList`均使用泛型实现，体现了多态：
 
 ```java
 public ArrayList<Player> positiveCreatures;
@@ -61,35 +62,12 @@ public ArrayList<Lackey> lackeys;
 
 
 
-## 设计原则
-
-### 单一职责原则
-
-* `Main`类只负责建立`Ground`类和`BackEnd`类
-
-
-* `Ground`类只负责游戏画面显示
-* `BackEnd`类只负责游戏的逻辑
-* `Creatures`类（包括其子类）只负责角色的定义
-* `ConstantValue`接口只负责提供全局常量
-* `FileFilterTest`类只负责过滤类型为".fight"的文件
-* `FileOperation`类只负责文件读写
-
-### 里氏替换原则
-
-所有的*Creatures*都能被*Good*或者*Bad*替换；所有的*Good*都能被**Grandpa**或者**GourdDolls**替换；所有的*Bad*都能被**ScorpionKing**、**SnakeQueen**或者**Toad**替换。
-
-### 开放封闭原则
-
-`Grandpa`与`GourdDolls`同为`Good`的子类，但是之所以不直接用`Good`类，是因为`GourdDolls`类还有一个独有的域`id`以标志不同葫芦娃，这体现了**一个类应该对扩展开放**的原则。
-
 
 
 ## 集合与泛型
 
-程序中用到的集合是`ArrayList`，其中主要是`ArrayList<Good>`、`ArrayList<Bad>`和`ArrayList<Creatures>`，分别用于存储正方(`GoodCreatures`)、反方(`BacCreatures`)与死亡的正反方(`DeadCreatures`)。
+程序中用到的集合是`ArrayList`，用于储存正方生物，反方生物，葫芦娃，小啰啰，以及所有线程。
 
-之所以用集合而不是数组，是因为每个时钟周期的检查中，会将`GoodCreatures`和`BadCreatures`中已经死亡的角色移动到`DeadCreatures`中，而数组无法添加删除元素。
 
 
 
