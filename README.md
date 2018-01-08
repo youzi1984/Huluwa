@@ -93,3 +93,27 @@ public ArrayList<Lackey> lackeys;
 
 * 对角色的测试有3个测试方法`testString`、`testLocation`和`testImage()`，分别测试`toString()`、`getX()`、`getY()`、`setX()`、`setY()`、`getImage()`、`setImage()`等方法的正确性。
 
+
+
+
+## 核心代码
+
+* 同一个位置不能站两个人。如果同一个阵营的两个人位置将要移动到接近的位置，就改变移动方向。
+```java
+for(Player c:field.positiveCreatures) {
+    				if(c!=this) {
+        				while((Math.abs(this.x()+x-c.x())<30)&&(Math.abs(this.y()+y-c.y())<30)) {
+        					x = rand.nextInt(11)*this.orientation;
+        					y = rand.nextInt(11)-5;
+        					c = field.positiveCreatures.get(0);
+        				}
+    				}
+  }
+```
+
+
+* 如果双方是不同阵营的，就依概率决定生死
+```java
+if((Math.abs(field.positiveCreatures.get(i).x()-field.negativeCreatures.get(j).x())<30) 
+        							&&(Math.abs(field.positiveCreatures.get(i).y()-field.negativeCreatures.get(j).y())<3)) 
+```
