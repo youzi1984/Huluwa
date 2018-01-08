@@ -15,15 +15,15 @@
 
 进入游戏后界面如下
 
-<img src="screenshots/初始.png" width="200">
+<img src="screenshoots/初始.png" width="200">
 
 按下`空格键`后，正方按`冲轭阵`出发；反方以`鹤翼阵`出发
 
-<img src="screenshots/战斗.png" width="200">
+<img src="screenshoots/战斗.png" width="200">
 
 战斗开始前或结束后，可以按‘L’打开文件夹，选择存档，重现场景
 
-<img src="screenshots/文件.png" width="200">
+<img src="screenshoots/文件.png" width="200">
 
 
 
