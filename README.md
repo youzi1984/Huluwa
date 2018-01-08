@@ -15,15 +15,15 @@
 
 进入游戏后界面如下
 
-<img src="screenshoots/初始.png" width="200">
+<img src="screenshoots/初始.png" width="600">
 
 按下`空格键`后，正方按`冲轭阵`出发；反方以`鹤翼阵`出发
 
-<img src="screenshoots/战斗.png" width="200">
+<img src="screenshoots/战斗.png" width="600">
 
 战斗开始前或结束后，可以按‘L’打开文件夹，选择存档，重现场景
 
-<img src="screenshoots/文件.png" width="200">
+<img src="screenshoots/文件.png" width="600">
 
 
 
@@ -44,18 +44,19 @@
 
 ## 封装与继承
 
-抽象类*Creatures*实现了`Runnable`接口，有两个抽象子类*Good*和*Bad*，*Good*有子类**Grandpa**和**GourdDolls**，分别代表爷爷和葫芦娃；*Bad*有子类**ScorpionKing**、**SnakeQueen**和**Toad**，分别代表蝎子大王、蛇精和蝎子精（小马仔）。
+`Player`类实现了`Runnable`接口，葫芦娃，爷爷，蝎子精，蛇精，小啰啰均继承自Player。
 
 
 
 ## 多态
 
-`Ground`类中的3个`ArrayList`均使用泛型实现，体现了多态：
+`Field`类中的3个`ArrayList`均使用泛型实现，体现了多态：
 
 ```java
-private ArrayList<Good> goodCreatures = null;
-private ArrayList<Bad> badCreatures = null;
-private ArrayList<Creatures> deadCreatures = null; 
+public ArrayList<Player> positiveCreatures;
+public ArrayList<Player> negativeCreatures;
+public ArrayList<Huluwa> brothers;
+public ArrayList<Lackey> lackeys;
 ```
 
 
@@ -94,7 +95,7 @@ private ArrayList<Creatures> deadCreatures = null;
 
 ## 注解
 
-用`@author`和`@see`等注解编写了javadoc，详情请见javadoc文档
+用`@Override`和`@Test`注解。
 
 
 
@@ -108,20 +109,9 @@ private ArrayList<Creatures> deadCreatures = null;
 
 
 
-## 线程安全
-
-* `BackEnd`类中的线程安全
-  * `check()`方法使用`synchronized`修饰，因为该方法需要随时检查`GoodCreatures`、`BacCreatures`和`DeadCreatures`，如果被打断，将会出现线程不安全的情况。
-  * `replaying()`方法使用`synchronized`修饰，因为该方法实现了对角色位置、图片的设置，一旦被打断，可能出现角色位置或图片不一致的情况。
-* `FileOperation`类中的线程安全：`writeFile()`方法使用`synchronized`修饰，因为该方法涉及写文件。
-
-
-
 
 
 ## 单元测试
 
-* 对角色的测试以`Grandpa`为代表，有3个测试方法`testString`、`testDead`、`testLocation`和`testImage()`，分别测试`Grandpa`的`toString()`、`isDead()`、`setBlood()`、`getBlood()`、`getX()`、`getY()`、`setX()`、`setY()`、`getPower()`、`getImage()`、`setImage()`等方法的正确性。由于其它角色的设置与`Grandpa`具有相似性，便不需再进行单元测试；
-* 由于`BackEnd`、`Ground`和`Main`等与GUI相关，所以不进行单元测试。
-
+* 对角色的测试有3个测试方法`testString`、`testLocation`和`testImage()`，分别测试`toString()`、`getX()`、`getY()`、`setX()`、`setY()`、`getImage()`、`setImage()`等方法的正确性。
 
